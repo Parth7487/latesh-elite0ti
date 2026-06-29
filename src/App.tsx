@@ -4122,8 +4122,8 @@ export default function App() {
         onClearCart={() => setCart([])}
       />
 
-      {/* Global Interactive Store Map */}
-      <StoreMap />
+      {/* Global Interactive Store Map (Only shown on homepage, contact page renders its own) */}
+      {currentPage === 'home' && <StoreMap />}
 
       {/* 008 — JOIN VORTEX (Moved below OUR LOCATIONS) */}
       <JoinVortex triggerToast={triggerToast} />
