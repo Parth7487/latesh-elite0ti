@@ -27,6 +27,8 @@ import ForzaShowroom from './components/ForzaShowroom';
 import MaterialVisualizer from './components/MaterialVisualizer';
 
 import { 
+  Facebook,
+  Instagram,
   ShieldCheck,
   ShoppingBag, 
   Search, 
@@ -4132,16 +4134,16 @@ export default function App() {
           
           {/* Brand block (logo + description + social links) */}
           <div className="lg:col-span-2 space-y-6">
-            <img src="/images/logo.png" alt="Elite TI Logo" className="h-16 w-auto object-contain" />
+            <img src="/images/logo.png" alt="Elite TI Logo" className="h-40 w-auto object-contain" />
             <p className="text-xs font-mono uppercase tracking-wide leading-relaxed text-neutral-400 max-w-sm">
-              Bespoke carbon and titanium for JDM and motorsport. Race-engineered, made to order, shipped worldwide.
+              ENGINEERING SUPERIORITY FOR THE MODERN CHASSIS. FORGED TITANIUM AND DRY CARBON EXCELLENCE.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded border border-neutral-800 flex items-center justify-center hover:border-[#c0f20c] hover:text-[#c0f20c] transition-colors">
-                <span className="text-xs font-mono font-bold">FB</span>
+              <a href="#" className="w-10 h-10 rounded border border-neutral-800 flex items-center justify-center hover:border-[#c0f20c] hover:text-[#c0f20c] transition-colors text-neutral-400">
+                <Facebook size={16} />
               </a>
-              <a href="#" className="w-10 h-10 rounded border border-neutral-800 flex items-center justify-center hover:border-[#c0f20c] hover:text-[#c0f20c] transition-colors">
-                <span className="text-xs font-mono font-bold">IG</span>
+              <a href="#" className="w-10 h-10 rounded border border-neutral-800 flex items-center justify-center hover:border-[#c0f20c] hover:text-[#c0f20c] transition-colors text-neutral-400">
+                <Instagram size={16} />
               </a>
             </div>
           </div>
