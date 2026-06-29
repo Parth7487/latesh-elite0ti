@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { Timeline } from './Timeline';
 import { AnimatedTestimonials } from './AnimatedTestimonials';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import JoinVortex from './JoinVortex';
+
 import ForzaShowroom from './ForzaShowroom';
 import MaterialVisualizer from './MaterialVisualizer';
 
@@ -243,43 +243,7 @@ const DriverCard: React.FC<DriverCardProps> = ({ name, image, bio, stats }) => {
           {/* Neon border lines */}
           <div className="absolute inset-0 border border-transparent group-hover:border-[#c0f20c]/20 transition-colors duration-500 rounded pointer-events-none" />
 
-          {/* Telemetry Overlay */}
-          <AnimatePresence>
-            {isHovered && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="absolute inset-0 bg-black/80 backdrop-blur-[2px] p-4 flex flex-col justify-between font-mono text-[9px] text-neutral-450 select-none pointer-events-none"
-              >
-                {/* Top Corner coordinates */}
-                <div className="flex justify-between items-center text-[#c0f20c]/80 tracking-wider">
-                  <span>TELEMETRY STACK // ONLINE</span>
-                  <div className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-[#c0f20c] rounded-full animate-pulse" />
-                    <span>SYS_ACT</span>
-                  </div>
-                </div>
 
-                {/* Center Grid of Metrics */}
-                <div className="grid grid-cols-2 gap-2 my-auto border-t border-b border-neutral-900 py-3">
-                  {stats.map((st, i) => (
-                    <div key={i} className="flex flex-col">
-                      <span className="text-[7px] text-neutral-600 uppercase tracking-widest">{st.label}</span>
-                      <span className="text-[10px] text-white font-bold tracking-wider mt-0.5">{st.val}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bottom line */}
-                <div className="flex justify-between text-[7px] text-neutral-600 tracking-widest uppercase">
-                  <span>CHASSIS_EVAL: PASS</span>
-                  <span>R-SPEC.108</span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
 
         {/* Text Area */}
@@ -1504,8 +1468,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ triggerToast, onAddToCart }) =
       </section>
 
       {/* Hood Material Visualiser removed */}
-      {/* Join WebGL Vortex Section */}
-      <JoinVortex triggerToast={toast} />
+
 
     </div>
   );
