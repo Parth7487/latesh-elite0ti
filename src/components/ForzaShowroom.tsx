@@ -305,7 +305,7 @@ export default function ForzaShowroom({ triggerToast, onAddToCart }: ForzaShowro
   };
 
   return (
-    <section className="relative w-full h-[110vh] md:h-screen overflow-hidden select-none bg-[#0a0a0c] border-b border-white/5" id="showroom-section" style={{ isolation: 'isolate' }}>
+    <section className="relative w-full min-h-screen md:h-screen overflow-hidden select-none bg-[#0a0a0c] border-b border-white/5" id="showroom-section" style={{ isolation: 'isolate' }}>
       {/* WebGL Podium Background */}
       <div ref={canvasContainerRef} className="absolute inset-0 z-0" />
 
@@ -314,23 +314,23 @@ export default function ForzaShowroom({ triggerToast, onAddToCart }: ForzaShowro
       <div className="absolute inset-0 z-0 pointer-events-none opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #fff 2px, #fff 4px)' }} />
 
       {/* Interface Content Layer */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-between p-6 md:p-10 font-mono text-left">
+      <div className="relative z-10 w-full h-full flex flex-col justify-between p-4 sm:p-6 md:p-10 font-mono text-left">
         
         {/* Top header branding */}
-        <header ref={headerRef} className="flex justify-between items-start w-full">
-          <div className="flex items-center gap-6">
+        <header ref={headerRef} className="flex flex-col sm:flex-row justify-between items-start gap-4 sm:gap-0 w-full">
+          <div className="flex items-center gap-4 sm:gap-6">
             <div 
-              className="flex flex-col items-center justify-center w-16 h-16 bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] transform -skew-x-12"
+              className="flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] transform -skew-x-12 shrink-0"
             >
-              <span className="transform skew-x-12 font-bold text-3xl font-sans leading-none -mb-1">{activeCar.rating}</span>
-              <span className="transform skew-x-12 text-[10px] font-bold bg-black text-white px-2 mt-1 rounded-sm">{activeCar.class}</span>
+              <span className="transform skew-x-12 font-bold text-2xl sm:text-3xl font-sans leading-none -mb-1">{activeCar.rating}</span>
+              <span className="transform skew-x-12 text-[9px] sm:text-[10px] font-bold bg-black text-white px-2 mt-1 rounded-sm">{activeCar.class}</span>
             </div>
             
             <div>
-              <h2 className="text-xl md:text-2xl font-bold italic tracking-wide text-neutral-400 leading-none">
-                {activeCar.make} <span className="text-sm font-normal not-italic ml-2">{activeCar.year}</span>
+              <h2 className="text-sm sm:text-base md:text-2xl font-bold italic tracking-wide text-neutral-400 leading-none">
+                {activeCar.make} <span className="text-[10px] sm:text-sm font-normal not-italic ml-2">{activeCar.year}</span>
               </h2>
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-black italic tracking-wider uppercase text-white drop-shadow-lg leading-tight mt-1" style={{ fontFamily: 'Teko, sans-serif' }}>
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black italic tracking-wider uppercase text-white drop-shadow-lg leading-tight mt-1" style={{ fontFamily: 'Teko, sans-serif' }}>
                 {activeCar.model}
               </h1>
             </div>
@@ -358,8 +358,8 @@ export default function ForzaShowroom({ triggerToast, onAddToCart }: ForzaShowro
         </header>
 
         {/* Center Hero Car Image - placed before z-10 layer to stay contained */}
-        <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none mt-12" style={{ overflow: 'hidden' }}>
-          <div className="w-[80%] max-w-4xl drop-shadow-[0_30px_50px_rgba(0,0,0,0.9)]">
+        <div className="absolute md:inset-0 z-[1] flex items-center justify-center pointer-events-none w-full h-[32vh] md:h-full top-[130px] sm:top-[110px] md:top-0" style={{ overflow: 'hidden' }}>
+          <div className="w-[85%] sm:w-[70%] md:w-[80%] max-w-4xl drop-shadow-[0_30px_50px_rgba(0,0,0,0.9)]">
             <img 
               ref={heroImgRef}
               src={activeCar.heroImg} 
@@ -372,7 +372,7 @@ export default function ForzaShowroom({ triggerToast, onAddToCart }: ForzaShowro
         {/* Left stats Telemetry panel */}
         <div 
           ref={statsPanelRef} 
-          className="relative z-10 w-72 bg-black/60 backdrop-blur-xl border-l-4 border-[#bdf522] p-5 shadow-2xl self-start mt-20"
+          className="relative z-10 w-full md:w-72 bg-black/60 backdrop-blur-xl border-l-4 border-[#bdf522] p-5 shadow-2xl self-start mt-[33vh] md:mt-20"
         >
           <div className="mb-5 pb-2 border-b border-white/10 flex justify-between items-center">
             <h3 className="font-bold text-sm tracking-widest uppercase italic text-white">Telemetry</h3>

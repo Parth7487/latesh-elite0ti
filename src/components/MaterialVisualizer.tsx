@@ -98,6 +98,16 @@ export default function MaterialVisualizer({ type = 'both' }: MaterialVisualizer
   // Transition tween ref
   const transitionTween = useRef<gsap.core.Tween | null>(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Handle material selection with cross-fade wipe
   const selectMaterial = (index: number) => {
     if (index === activeIndex) return;
@@ -480,7 +490,7 @@ export default function MaterialVisualizer({ type = 'both' }: MaterialVisualizer
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row w-full h-auto" style={{ gap: `${cardGap}px`, minHeight: `${containerHeightDesktop}px` }} ref={accordionContainerRef}>
+        <div className="flex flex-col md:flex-row w-full h-auto" style={{ gap: `${cardGap}px`, minHeight: isMobile ? '450px' : `${containerHeightDesktop}px` }} ref={accordionContainerRef}>
           {MATERIALS_DATA.map((mat, i) => {
             const isActive = i === accordionIndex;
             return (

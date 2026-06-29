@@ -1354,14 +1354,14 @@ export default function App() {
 
       {/* 2. Main Navigation Header — matches Elite TI Shopify store */}
       <header className="sticky top-0 z-50 bg-[#0a0a0b] border-b border-neutral-900 transition-all">
-        <div className="w-full px-4 md:px-8 lg:px-12 py-0 flex items-center justify-between h-[76px] relative max-w-[1700px] mx-auto">
+        <div className="w-full px-3 sm:px-6 md:px-8 lg:px-12 py-0 flex items-center justify-between h-[76px] relative max-w-[1700px] mx-auto">
           
           {/* Left: Logo */}
           <button 
             onClick={() => setCurrentPage('home')}
-            className="shrink-0 flex items-center mr-6 hover:opacity-90 transition-opacity cursor-pointer bg-transparent border-0"
+            className="shrink-0 flex items-center mr-2 sm:mr-6 hover:opacity-90 transition-opacity cursor-pointer bg-transparent border-0"
           >
-            <img src="/images/logo.png" alt="Elite TI Logo" className="h-[48px] w-auto object-contain" />
+            <img src="/images/logo.png" alt="Elite TI Logo" className="h-[36px] sm:h-[48px] w-auto object-contain" />
           </button>
 
           {/* Center: Navigation links */}
@@ -1422,7 +1422,7 @@ export default function App() {
           </nav>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
 
             {/* SHOP BY CAR dropdown */}
             <div className="relative hidden md:block">
@@ -1452,17 +1452,17 @@ export default function App() {
             {/* Search */}
             <button 
               aria-label="Search Catalog"
-              className="w-9 h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer bg-transparent border-0"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer bg-transparent border-0"
             >
-              <Search className="w-[18px] h-[18px]" />
+              <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
             </button>
 
             {/* Account */}
             <button 
               aria-label="User Account"
-              className="w-9 h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer"
             >
-              <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-[18px] sm:h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 11.5a9 9 0 1 0-18 0c0 2 0 4 .5 5.5C4 18.5 5.5 21 8.5 21c2 0 2.5-1 3.5-1s1.5 1 3.5 1c3 0 4.5-2.5 5-4 .5-1.5.5-3.5.5-5.5z" />
                 <path d="M6.5 10.5h11a.5.5 0 0 1 .5.5v2.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 6 13.5v-2.5a.5.5 0 0 1 .5-.5z" />
                 <path d="M11 18.5h2M10 20h4" />
@@ -1473,16 +1473,16 @@ export default function App() {
             <button
               onClick={() => setIsCartOpen(true)}
               id="cart-drawer-trigger"
-              className="w-9 h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all relative cursor-pointer"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all relative cursor-pointer"
             >
-              <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-[18px] sm:h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="8" width="18" height="12" rx="1" />
                 <path d="M9 8V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
                 <path d="M3 14h18" />
                 <path d="M8 11h2M14 11h2M11 17h2" />
               </svg>
               {cart.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#c0f20c] text-black rounded-full text-[8px] font-mono font-bold flex items-center justify-center border-[1.5px] border-[#111111]">
+                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#c0f20c] text-black rounded-full text-[7.5px] sm:text-[8px] font-mono font-bold flex items-center justify-center border-[1.5px] border-[#111111]">
                   {cart.reduce((sum, item) => sum + item.qty, 0)}
                 </span>
               )}
@@ -1491,10 +1491,10 @@ export default function App() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer lg:hidden bg-transparent border-0"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all cursor-pointer lg:hidden bg-transparent border-0"
               aria-label="Toggle Mobile Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
 
