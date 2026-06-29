@@ -2132,12 +2132,12 @@ export default function App() {
                 items={BrandLoopList.map((brand) => (
                   <div
                     key={brand.name}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-neutral-950/40 border border-neutral-900/60 rounded-lg backdrop-blur-sm transition-all duration-300 hover:border-[#9cce00]/20 hover:bg-neutral-900/20 group cursor-default select-none shrink-0"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-neutral-950/40 border border-neutral-900/60 rounded-lg backdrop-blur-sm cursor-default select-none shrink-0"
                   >
-                    <div className="w-5 h-5 flex items-center justify-center filter brightness-90 group-hover:brightness-110 transition-all duration-300">
+                    <div className="w-5 h-5 flex items-center justify-center filter brightness-90">
                       <img src={brand.logo} className="w-5 h-5 object-contain shrink-0" alt={brand.name} />
                     </div>
-                    <span className="font-display font-bold text-[10px] md:text-[11px] tracking-wider text-neutral-400 group-hover:text-[#9cce00] transition-colors">
+                    <span className="font-display font-bold text-[10px] md:text-[11px] tracking-wider text-neutral-400">
                       {brand.name}
                     </span>
                   </div>
