@@ -80,13 +80,24 @@ export function AnimatedTestimonials({
                   duration: 0.4,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 origin-bottom"
+                drag={isActive(index) ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.4}
+                onDragEnd={(e, info) => {
+                  const threshold = 50; // threshold in pixels
+                  if (info.offset.x > threshold) {
+                    handlePrev();
+                  } else if (info.offset.x < -threshold) {
+                    handleNext();
+                  }
+                }}
+                className="absolute inset-0 origin-bottom touch-pan-y"
               >
                 <img
                   src={testimonial.src}
                   alt={testimonial.name}
                   draggable={false}
-                  className="h-full w-full rounded-3xl object-cover object-center shadow-2xl border border-neutral-900"
+                  className="h-full w-full rounded-3xl object-cover object-center shadow-2xl border border-neutral-900 cursor-grab active:cursor-grabbing"
                 />
               </motion.div>
             ))}
@@ -124,7 +135,7 @@ export function AnimatedTestimonials({
               <p className="text-xs font-mono font-bold text-[#c0f20c] tracking-widest uppercase mt-1">
                 {testimonials[active].designation}
               </p>
-
+              
               {/* Bio Description with word reveal effect */}
               <motion.p className="mt-6 text-sm text-neutral-400 font-sans leading-relaxed">
                 {testimonials[active].quote.split(" ").map((word, index) => (
@@ -171,7 +182,7 @@ export function AnimatedTestimonials({
           </AnimatePresence>
 
           {/* Navigation Controls */}
-          <div className="flex gap-4 pt-10">
+          <div className="hidden md:flex gap-4 pt-10">
             <button
               onClick={handlePrev}
               className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-black hover:bg-[#c0f20c] hover:border-transparent transition-all duration-300 cursor-pointer"
