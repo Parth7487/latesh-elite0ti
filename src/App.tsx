@@ -20,7 +20,7 @@ import ProductDetail from './components/ProductDetail';
 import ContactPage from './components/ContactPage';
 import { LogoLoop } from './components/LogoLoop';
 import { ExpandOnHover } from './components/ExpandOnHover';
-import { StoryHorizontalScroll } from './components/StoryHorizontalScroll';
+
 import StorySplitReveal from './components/StorySplitReveal';
 import JoinVortex from './components/JoinVortex';
 import ForzaShowroom from './components/ForzaShowroom';
@@ -2274,9 +2274,6 @@ export default function App() {
           <MaterialVisualizer type="accordion" />
 
 
-
-          {/* 004-A — STORY HORIZONTAL SCROLL ALTERNATIVE */}
-          <StoryHorizontalScroll onNavigate={() => setCurrentPage('catalog')} />
 
           {/* 004-B — STORY SPLIT REVEAL ALTERNATIVE */}
           <StorySplitReveal />
