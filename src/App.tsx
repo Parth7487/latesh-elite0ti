@@ -4223,11 +4223,29 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <span className="text-[9px] text-neutral-550">SECURE CHECKOUT</span>
-            <div className="flex gap-2">
-              <span className="px-2 py-0.5 border border-neutral-900 rounded bg-neutral-950 text-neutral-500 text-[8px] font-bold">AMEX</span>
-              <span className="px-2 py-0.5 border border-neutral-900 rounded bg-neutral-950 text-neutral-500 text-[8px] font-bold">VISA</span>
-              <span className="px-2 py-0.5 border border-neutral-900 rounded bg-neutral-950 text-neutral-500 text-[8px] font-bold">APPLE PAY</span>
-              <span className="px-2 py-0.5 border border-neutral-900 rounded bg-neutral-950 text-neutral-500 text-[8px] font-bold">GOOGLE PAY</span>
+            <div className="flex gap-2 items-center">
+              {/* Amex */}
+              <svg viewBox="0 0 36 24" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="3" fill="#141416" stroke="#27272A" strokeWidth="1"/>
+                <path d="M10.8 14.5h2.1l.4-1.2h2.4l.4 1.2h2.1l-2.7-7.6h-2.1l-2.6 7.6zm3.3-3.6l.8-2.4.8 2.4h-1.6zm6.8-3.9h-2.1v7.6h2.1v-7.6zm5.8 0h-3.4v2.2h2.9v1.6h-2.9v2.2h3.4v1.6h-5.5v-7.6h5.5v1.6z" fill="#E4E4E7"/>
+              </svg>
+              {/* Visa */}
+              <svg viewBox="0 0 36 24" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="3" fill="#141416" stroke="#27272A" strokeWidth="1"/>
+                <path d="M13.722 15.65h1.562l.975-3.665h1.56l-.975 3.665h-1.561zm3.947-3.522c-.218-.092-.558-.19-.982-.19-1.08 0-1.842.579-1.848 1.405-.006.612.544.954.959 1.158.427.21.57.346.568.532-.004.287-.342.42-.658.42-.44 0-.676-.066-1.035-.228l-.146-.067-.155.97c.26.12.744.224 1.241.229 1.148 0 1.895-.57 1.904-1.454.007-.485-.287-.854-.917-1.158-.381-.193-.615-.323-.615-.52 0-.178.194-.369.62-.369.353-.006.614.078.813.162l.097.046.15-.936zm1.76 3.522L20.58 11.98h-.894c-.277 0-.51.162-.06.013l-1.745 4.143h1l.2-.555h1.22l.115.555h.868zm-.94-1.398h-.832l.526-1.442.306 1.442zM7.923 11.98L6.96 14.514l-.42-2.167c-.126-.474-.452-.528-.778-.524H4.5v.103c.672.145 1.261.48 1.668.844l1.06 3.033h1.033l1.536-3.968H7.923z" fill="#E4E4E7"/>
+              </svg>
+              {/* Apple Pay */}
+              <svg viewBox="0 0 36 24" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="3" fill="#141416" stroke="#27272A" strokeWidth="1"/>
+                <path d="M11.667 11.917c-.015-1.077.876-1.595.918-1.62-.5-.733-1.282-.833-1.56-.85-.662-.067-1.293.39-1.629.39-.335 0-.853-.398-1.404-.388-.724.01-1.393.421-1.767 1.067-.753 1.306-.193 3.238.536 4.29.357.514.78.1.84.1.06-.41.012-.472.062-.516h-1.272V14.5h3.042zm-.835-2.772c.3-.362.5-.866.444-1.369-.432.017-.954.288-1.265.65-.268.312-.503.824-.44 1.314.48.037.962-.232 1.261-.595z" fill="#E4E4E7"/>
+                <path d="M15.5 8.5h2.1c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4H17v2.2h-1.5V8.5zm1.5 1.7c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H17v1H17zm6.3-1.7v5.5H22v-.6c-.3.4-.8.7-1.4.7-1.1 0-1.8-.8-1.8-2v-.1c0-1.2.7-2 1.8-2 .6 0 1.1.3 1.4.7V8.5h1.3zm-1.3 2.9c0-.4-.3-.7-.8-.7s-.8.3-.8.7v.1c0 .4.3.7.8.7s.8-.3.8-.7zm4.5-.6l-1.3 3.2H25l1.4-3.2v-1h1.4v1z" fill="#E4E4E7"/>
+              </svg>
+              {/* Google Pay */}
+              <svg viewBox="0 0 36 24" className="h-5 w-auto" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="24" rx="3" fill="#141416" stroke="#27272A" strokeWidth="1"/>
+                <path d="M10.8 11.5v1.8h3.2c-.1.8-.8 1.8-2.2 1.8-1.2 0-2.2-1-2.2-2.2s1-2.2 2.2-2.2c.7 0 1.2.3 1.4.5l1.4-1.4c-.9-.8-2.1-1.3-3.4-1.3-2.9 0-5.2 2.3-5.2 5.2s2.3 5.2 5.2 5.2c3 0 5-2.1 5-5.1 0-.3 0-.6-.1-.9h-4.9z" fill="#E4E4E7"/>
+                <path d="M18.5 8.5h2.1c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4H20v2.2h-1.5V8.5zm1.5 1.7c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H20v1zm6.3-1.7v5.5H25v-.6c-.3.4-.8.7-1.4.7-1.1 0-1.8-.8-1.8-2v-.1c0-1.2.7-2 1.8-2 .6 0 1.1.3 1.4.7V8.5h1.3zm-1.3 2.9c0-.4-.3-.7-.8-.7s-.8.3-.8.7v.1c0 .4.3.7.8.7s.8-.3.8-.7zm4.5-.6l-1.3 3.2H28l1.4-3.2v-1h1.4v1z" fill="#E4E4E7"/>
+              </svg>
             </div>
           </div>
         </div>
