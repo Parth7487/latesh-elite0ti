@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import ForzaShowroom from './ForzaShowroom';
 import MaterialVisualizer from './MaterialVisualizer';
+import GlareCard from './GlareCard';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -1195,7 +1196,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({ triggerToast, onAddToCart }) =
                     </div>
                   </div>
 
-                  <div className="p-4 overflow-y-auto flex-grow space-y-4">
+                  <div className="p-4 overflow-y-auto flex-grow space-y-4 flex flex-col">
 
                   {/* ── SCREEN 1: APPLICATION STATUS ── */}
                   {activeScreen === 'status' && (
@@ -1440,6 +1441,75 @@ export const AboutUs: React.FC<AboutUsProps> = ({ triggerToast, onAddToCart }) =
                       </div>
                     </div>
                   )}
+
+                    {/* Interactive Collab Pass GlareCard */}
+                    <div className="pt-2 mt-auto shrink-0">
+                      <GlareCard className="w-full h-[225px] rounded-[24px] border border-neutral-850">
+                        <div className="flex flex-col justify-between h-full w-full font-mono text-left relative z-10 select-none">
+                          {/* Header info */}
+                          <div className="flex justify-between items-start border-b border-neutral-900 pb-2">
+                            <div>
+                              <div className="text-[10px] font-black italic tracking-wider text-[#c0f20c]">ELITE TI // ATELIER</div>
+                              <div className="text-[7px] text-neutral-500 uppercase tracking-widest mt-0.5">PILOT MEMBERSHIP PASS</div>
+                            </div>
+                            <div className="w-5 h-5 border border-[#c0f20c]/40 rounded-sm flex items-center justify-center text-[7.5px] font-bold text-[#c0f20c] bg-[#c0f20c]/5 shadow-[0_0_8px_rgba(192,242,12,0.1)]">
+                              ETi
+                            </div>
+                          </div>
+
+                          {/* Member details body */}
+                          <div className="space-y-2.5 py-4">
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <span className="text-[6.5px] text-neutral-600 block uppercase tracking-widest">MEMBER IDENT</span>
+                                <span className="text-[9.5px] font-bold text-white uppercase tracking-wider truncate block">
+                                  {formData.firstName || formData.lastName 
+                                    ? `${formData.firstName} ${formData.lastName}`.trim() 
+                                    : 'PENDING IDENT'}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-[6.5px] text-neutral-600 block uppercase tracking-widest">VEHICLE CLASS</span>
+                                <span className="text-[9.5px] font-bold text-neutral-300 uppercase tracking-wider truncate block">
+                                  {formData.vehicle || 'PENDING ASSIGN'}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <span className="text-[6.5px] text-neutral-600 block uppercase tracking-widest">COLLAB TIER</span>
+                                <span className="text-[9.5px] font-bold uppercase tracking-wider block" style={{ color: tierColor }}>
+                                  {formData.followers ? collabTier : 'PENDING EVAL'}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-[6.5px] text-neutral-600 block uppercase tracking-widest">NETWORK ACCESS</span>
+                                <span className="text-[9.5px] font-bold text-neutral-300 uppercase tracking-wider block">
+                                  {formData.platforms.length > 0 ? `${formData.platforms.length} CHANNELS` : 'PENDING'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Footer barcodes */}
+                          <div className="flex justify-between items-end border-t border-neutral-900 pt-2.5">
+                            <div className="space-y-0.5">
+                              <span className="text-[6px] text-neutral-600 block uppercase tracking-widest">PASS SECURE HASH</span>
+                              <span className="text-[7.5px] text-neutral-400 font-bold uppercase tracking-wide">
+                                #ETI-{formData.lastName ? formData.lastName.substring(0, 4).toUpperCase() : 'PILOT'}-{(Math.floor(totalChars * 99) + 10000)}
+                              </span>
+                            </div>
+                            {/* Fake bar code lines */}
+                            <div className="flex gap-[1.5px] h-6 items-end pb-0.5 opacity-60">
+                              {[1, 2, 4, 1, 3, 2, 1, 4, 2, 1, 3, 1, 2, 4, 1, 2].map((w, idx) => (
+                                <div key={idx} className="bg-white h-full" style={{ width: `${w * 0.8}px` }} />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </GlareCard>
+                    </div>
 
                   </div>
                 </div>
