@@ -2122,26 +2122,25 @@ export default function App() {
           {/* OVERLAPPING HOME CONTENT CONTAINER */}
           <div className="home-overlapping-content">
             {/* BRAND SPEC STRIP (MARQUEE) */}
-            <div className="py-2 border-y border-neutral-900/50 bg-[#030303] overflow-hidden">
+            <div className="py-1 border-y border-neutral-900/50 bg-[#030303] overflow-hidden">
               <LogoLoop
                 speed={30}
                 direction="left"
-                pauseOnHover={true}
+                pauseOnHover={false}
                 fadeOut={true}
-                gap="gap-6 md:gap-8"
+                gap="gap-4 md:gap-6"
                 items={BrandLoopList.map((brand) => (
-                  <button
+                  <div
                     key={brand.name}
-                    onClick={() => handleSelectChassis(brand.name)}
-                    className="flex items-center gap-3 px-5 py-2.5 bg-neutral-950/40 border border-neutral-900/60 rounded-xl backdrop-blur-sm transition-all duration-300 hover:border-[#9cce00]/40 hover:bg-neutral-900/40 group cursor-pointer text-left focus:outline-none focus:ring-1 focus:ring-[#9cce00]/30 shrink-0"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-neutral-950/40 border border-neutral-900/60 rounded-lg backdrop-blur-sm transition-all duration-300 hover:border-[#9cce00]/20 hover:bg-neutral-900/20 group cursor-default select-none shrink-0"
                   >
-                    <div className="w-8 h-8 flex items-center justify-center filter brightness-90 group-hover:brightness-110 group-hover:scale-105 transition-all duration-300">
-                      <img src={brand.logo} className="w-8 h-8 object-contain shrink-0" alt={brand.name} />
+                    <div className="w-5 h-5 flex items-center justify-center filter brightness-90 group-hover:brightness-110 transition-all duration-300">
+                      <img src={brand.logo} className="w-5 h-5 object-contain shrink-0" alt={brand.name} />
                     </div>
-                    <span className="font-display font-bold text-[11px] md:text-xs tracking-wider text-neutral-300 group-hover:text-[#9cce00] transition-colors">
+                    <span className="font-display font-bold text-[10px] md:text-[11px] tracking-wider text-neutral-400 group-hover:text-[#9cce00] transition-colors">
                       {brand.name}
                     </span>
-                  </button>
+                  </div>
                 ))}
               />
             </div>
