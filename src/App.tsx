@@ -1121,7 +1121,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Custom Interactive states & datasets for newly added sections and pages
-  const [activeSlide, setActiveSlide] = useState(0);
+
   const [catalogFilter, setCatalogFilter] = useState<'all' | 'carbon' | 'titanium' | 'swag'>('all');
   const [catalogSort, setCatalogSort] = useState<'alpha-asc' | 'alpha-desc' | 'price-asc' | 'price-desc'>('alpha-asc');
   const [searchQuery, setSearchQuery] = useState('');
@@ -1270,87 +1270,7 @@ export default function App() {
   const totalFound = bodyKits.length + aeroFiltered.length + interior.length + hoods.length + engine.length + titanium.length;
 
 
-  // --- Slides Data for Featured Chassis Slider ---
-  const slidesData = [
-    {
-      name: "Mazda RX-7",
-      chassis: "FD3S",
-      label: "Hand-Finished & Circuit Ready",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/mazda-rx7-6482440.jpg?v=1765735254",
-      products: [
-        { id: "rx7-hood", title: "FD3S RE AMEMIYA CARBON HOOD", price: 1450, type: "tier2" as const },
-        { id: "rx7-lip", title: "FD3S FEED-STYLE CARBON FRONT LIP", price: 680, type: "tier1" as const },
-        { id: "rx7-skirt", title: "FD3S CARBON SIDE SKIRTS", price: 580, type: "tier1" as const },
-        { id: "rx7-bolts", title: "FD3S TITANIUM BAY FASTENERS", price: 189, type: "tier3" as const }
-      ]
-    },
-    {
-      name: "Toyota Supra MK4",
-      chassis: "JZA80",
-      label: "2JZ-Worthy Race Armor",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/toyota-supra-mkiv-2961889.png?v=1765735300",
-      products: [
-        { id: "supra4-lip", title: "JZA80 R-RIDERS CARBON FRONT LIP", price: 720, type: "tier1" as const },
-        { id: "supra4-plug", title: "2JZ CARBON SPARK PLUG COVER", price: 340, type: "tier1" as const },
-        { id: "supra4-wing", title: "JZA80 TRD-STYLE CARBON WING", price: 890, type: "tier1" as const },
-        { id: "supra4-ti", title: "JZA80 TITANIUM ENGINE BAY KIT", price: 295, type: "tier3" as const }
-      ]
-    },
-    {
-      name: "Toyota Supra MK5",
-      chassis: "A90",
-      label: "Modern Aerodynamic Icon",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/toyota-supra-mkv-a90-5805566.jpg?v=1765735301",
-      products: [
-        { id: "supra5-spoiler", title: "A90 HKS-STYLE CARBON DUCKTAIL", price: 540, type: "tier1" as const },
-        { id: "supra5-fender", title: "A90 CARBON FENDER GARNISH", price: 280, type: "tier1" as const },
-        { id: "supra5-diffuser", title: "A90 CARBON REAR DIFFUSER", price: 980, type: "tier1" as const },
-        { id: "supra5-hardware", title: "A90 GRADE 5 TITANIUM BOLTS", price: 145, type: "tier3" as const }
-      ]
-    },
-    {
-      name: "Nissan Skyline GT-R",
-      chassis: "BNR34",
-      label: "The Godzilla Circuit Curation",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/nissan-r34-gtr-1940832.png?v=1765735270",
-      products: [
-        { id: "r34-diffuser", title: "BNR34 V-SPEC CARBON REAR DIFFUSER", price: 1850, type: "tier1" as const },
-        { id: "r34-splitter", title: "BNR34 CARBON FRONT SPLITTER", price: 790, type: "tier1" as const },
-        { id: "r34-wing", title: "BNR34 CARBON WING BLADE EXTS", price: 420, type: "tier1" as const },
-        { id: "r34-fasteners", title: "BNR34 RB26 TITANIUM BOLTS KIT", price: 280, type: "tier3" as const }
-      ]
-    },
-    {
-      name: "Nissan GT-R",
-      chassis: "R35",
-      label: "Track Beast Carbon Suit",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/nissan-r35-gtr-8162604.jpg?v=1765735271",
-      products: [
-        { id: "r35-hood", title: "R35 N-STYLE VENTED CARBON HOOD", price: 2195, type: "tier2" as const },
-        { id: "r35-trunk", title: "R35 OEM CARBON TRUNK LID", price: 1150, type: "tier1" as const },
-        { id: "r35-fenders", title: "R35 VENTED CARBON FENDERS", price: 1550, type: "tier1" as const },
-        { id: "r35-lugs", title: "R35 TITANIUM WHEEL LUG NUTS", price: 320, type: "tier3" as const }
-      ]
-    },
-    {
-      name: "Nissan 370Z",
-      chassis: "Z34",
-      label: "Wide-Body Spec Fasteners",
-      catalogLink: "catalog",
-      heroImage: "https://cdn.shopify.com/s/files/1/0842/8362/1657/collections/nissan-370z-3763099.jpg?v=1765735262",
-      products: [
-        { id: "370z-wing", title: "Z34 NIS-STYLE CARBON REAR WING", price: 850, type: "tier1" as const },
-        { id: "370z-lip", title: "Z34 CARBON FRONT LIP SPLITTER", price: 590, type: "tier1" as const },
-        { id: "370z-mirror", title: "Z34 CARBON MIRROR COVERS", price: 180, type: "tier1" as const },
-        { id: "370z-bay", title: "Z34 VQ37 TITANIUM BAY FASTENERS", price: 189, type: "tier3" as const }
-      ]
-    }
-  ];
+
 
   // Handler to add simple products (catalog / swag / titanium) to cart
   const handleAddSimpleProductToCart = (p: { id: string, title: string, price: number, category: string, imageType?: 'tier1' | 'tier2' | 'tier3' }) => {
@@ -2239,81 +2159,6 @@ export default function App() {
               />
             </div>
           </section>
-
-          {/* 002 — FEATURED CHASSIS SHOWCASE SLIDER */}
-          <section className="featured-section">
-            <div className="container">
-              <div className="section-head featured-section-head">
-                <div>
-                  <span className="kicker reveal">002 — FEATURED CHASSIS</span>
-                  <h2 className="display-m featured-section__title reveal" style={{ '--reveal-delay': '100ms', marginTop: '14px' } as React.CSSProperties}>
-                    <span className="featured-section__name">{slidesData[activeSlide].name}</span>
-                    <span className="featured-section__chassis">{slidesData[activeSlide].chassis}</span>
-                  </h2>
-                </div>
-                <div className="ti-rule"></div>
-                <button
-                  onClick={() => setCurrentPage('catalog')}
-                  className="text-link reveal featured-section__catalog bg-transparent border-0 border-b cursor-pointer text-white"
-                  style={{ '--reveal-delay': '200ms' } as React.CSSProperties}
-                >
-                  View Catalog
-                </button>
-              </div>
-
-              <div className="featured-slider">
-                <div className="featured-slider__track">
-                  {slidesData.map((slide, idx) => (
-                    <div 
-                      key={idx}
-                      className={`featured-slide ${activeSlide === idx ? 'is-active' : ''}`}
-                    >
-                      <button 
-                        onClick={() => setCurrentPage('catalog')}
-                        className="featured-slide__hero text-left border-0 cursor-pointer"
-                        style={{ backgroundImage: `url(${slide.heroImage})` }}
-                      >
-                        <span className="featured-slide__hero-pretitle">{slide.chassis} &middot; BESPOKE CARBON</span>
-                        <span className="featured-slide__hero-label">Made to Order &middot; {slide.label}</span>
-                      </button>
-                      <div className="featured-slide__products">
-                        {slide.products.map((p) => (
-                          <div 
-                            key={p.id}
-                            onClick={() => handleAddSimpleProductToCart({ id: p.id, title: p.title, price: p.price, category: p.type === 'tier3' ? 'titanium' : 'carbon' })}
-                            className="featured-product"
-                            style={{ backgroundImage: `url(${slide.heroImage})` }}
-                          >
-                            <span className="featured-product__name">{p.title}</span>
-                            <span className="featured-product__meta">
-                              <span>{slide.chassis}</span>
-                              <strong>${p.price}</strong>
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="featured-slider__nav" role="tablist">
-                  {slidesData.map((slide, idx) => (
-                    <button 
-                      key={idx}
-                      className={`featured-dot ${activeSlide === idx ? 'is-active' : ''}`}
-                      onClick={() => setActiveSlide(idx)}
-                      type="button" 
-                      aria-label={`Go to ${slide.name}`}
-                    >
-                      <span key={activeSlide} className="featured-dot__bar"></span>
-                      <span className="featured-dot__chassis">{slide.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-
 
 
           {/* Forza Showroom Tuner Section */}
