@@ -320,37 +320,19 @@ export const AboutUs: React.FC<AboutUsProps> = ({ triggerToast, onAddToCart }) =
       name: "ROB DAHM",
       designation: "ROTARY BUILDER / OFF-GRID ENGINEER",
       src: "/images/about/driver_15.jpeg",
-      quote: "Rob is a legend in the rotary world and the creator of one of the most extreme RX-7s ever built. His Pikes Peak program is all about pushing boundaries in a way only he can. Working with him lets us test our parts in real abuse conditions and be part of a build that represents pure innovation.",
-      stats: [
-        { label: 'VEHICLE', val: 'AWD 4-ROTOR FD' },
-        { label: 'POWER', val: '1400 BHP' },
-        { label: 'BOOST', val: '35 PSI' },
-        { label: 'DISCIPLINE', val: 'TIME ATTACK' }
-      ]
+      quote: "Rob is a legend in the rotary world and the creator of one of the most extreme RX-7s ever built. His Pikes Peak program is all about pushing boundaries in a way only he can. Working with him lets us test our parts in real abuse conditions and be part of a build that represents pure innovation."
     },
     {
       name: "MAD MIKE WHIDDETT",
       designation: "DRIFT ICON / ROTARY FANATIC",
       src: "/images/about/driver_16.jpeg",
-      quote: "Mad Mike needs no introduction. Drift icon, rotary fanatic, and the mind behind some of the wildest RX-7 builds on the planet. We support his Formula Drift program with the same mindset he brings to every car — to go harder than anyone else and make it look effortless.",
-      stats: [
-        { label: 'VEHICLE', val: 'RX-7 S15 "MADBUL"' },
-        { label: 'POWER', val: '850 BHP' },
-        { label: 'ENGINE', val: '4-ROTOR 26B' },
-        { label: 'DISCIPLINE', val: 'DRIFT' }
-      ]
+      quote: "Mad Mike needs no introduction. Drift icon, rotary fanatic, and the mind behind some of the wildest RX-7 builds on the planet. We support his Formula Drift program with the same mindset he brings to every car — to go harder than anyone else and make it look effortless."
     },
     {
       name: "JON WONG",
       designation: "JDM BUILDER / PRECISION CULTURE",
       src: "/images/about/driver_17.jpeg",
-      quote: "Jon is a high-end builder, enthusiast, and long-time supporter of precision JDM culture. His FD RX-7, MK4 Supra, MR2, and other show cars reflect the exact values we care about — clean work, thoughtful mods, and builds that stand out without trying too hard.",
-      stats: [
-        { label: 'VEHICLES', val: 'FD RX-7 / MK4 / MR2' },
-        { label: 'STYLE', val: 'PRECISION JDM' },
-        { label: 'FOCUS', val: 'SHOW + FUNCTION' },
-        { label: 'DISCIPLINE', val: 'CULTURE / BUILD' }
-      ]
+      quote: "Jon is a high-end builder, enthusiast, and long-time supporter of precision JDM culture. His FD RX-7, MK4 Supra, MR2, and other show cars reflect the exact values we care about — clean work, thoughtful mods, and builds that stand out without trying too hard."
     }
   ];
   
