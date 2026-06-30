@@ -705,7 +705,7 @@ export default function App() {
 
   // Toasts / alerts
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [activeProductTab, setActiveProductTab] = useState<'overview' | 'panels' | 'features' | 'materials' | 'leadtime'>('overview');
+  const [activeProductTab, setActiveProductTab] = useState<'overview' | 'panels' | 'features' | 'materials' | 'leadtime' | null>('overview');
 
   // --- ETi Active Color Changer States ---
   const [recolourColor, setRecolourColor] = useState<string>('#ef4444'); // Candy Red default
@@ -3794,36 +3794,148 @@ export default function App() {
                   { id: 'features', label: '03 / KEY FEATURES' },
                   { id: 'materials', label: '04 / MATERIALS AVAILABLE' },
                   { id: 'leadtime', label: '05 / LEAD TIME & DISPATCH' }
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveProductTab(tab.id as any)}
-                    className={`h-11 px-4 text-left border flex items-center justify-between transition-all duration-300 cursor-pointer ${
-                      activeProductTab === tab.id
-                        ? 'bg-[#c0f20c] border-[#c0f20c] text-black font-extrabold shadow-[0_0_12px_rgba(192,242,12,0.1)]'
-                        : 'border-neutral-900 hover:border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-950/40'
-                    }`}
-                  >
-                    <span>{tab.label}</span>
-                    <ArrowRight className={`w-3.5 h-3.5 transition-transform ${activeProductTab === tab.id ? 'translate-x-1' : 'opacity-0'}`} />
-                  </button>
-                ))}
+                ].map((tab) => {
+                  const isCurrent = activeProductTab === tab.id;
+                  return (
+                    <React.Fragment key={tab.id}>
+                      <button
+                        onClick={() => {
+                          if (activeProductTab === tab.id) {
+                            setActiveProductTab(null);
+                          } else {
+                            setActiveProductTab(tab.id as any);
+                          }
+                        }}
+                        className={`h-11 px-4 text-left border flex items-center justify-between transition-all duration-300 cursor-pointer ${
+                          isCurrent
+                            ? 'bg-[#c0f20c] border-[#c0f20c] text-black font-extrabold shadow-[0_0_12px_rgba(192,242,12,0.1)]'
+                            : 'border-neutral-900 hover:border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-950/40'
+                        }`}
+                      >
+                        <span>{tab.label}</span>
+                        {/* Desktop: Right arrow indicator */}
+                        <ArrowRight className={`hidden lg:block w-3.5 h-3.5 transition-transform ${isCurrent ? 'translate-x-1' : 'opacity-0'}`} />
+                        {/* Mobile: Chevron toggle indicator */}
+                        <ChevronDown className={`lg:hidden w-3.5 h-3.5 transition-transform duration-300 ${isCurrent ? 'rotate-180 text-black' : 'text-neutral-400'}`} />
+                      </button>
+
+                      {/* Dropdown description block on mobile */}
+                      {isCurrent && (
+                        <div className="lg:hidden border border-t-0 border-neutral-900 bg-neutral-950/40 p-5 space-y-4 rounded-b-sm">
+                          {tab.id === 'overview' && (
+                            <div className="space-y-4">
+                              <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">CHASSIS OUTLINE</span>
+                              <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider">NISSAN 350Z TOP SECRET WIDEBODY BODY KIT</h3>
+                              <p className="text-neutral-300 text-[11px] leading-relaxed font-sans">
+                                The TOP SECRET wide body kit for the Nissan 350Z is a complete exterior conversion engineered for maximum stance, wide-fender presence, and aggressive aerodynamic styling. Each panel is precision designed to fit factory mounting points for a seamless OEM+ transformation.
+                              </p>
+                              <div className="pt-2">
+                                <span className="text-[9px] font-mono text-neutral-500 uppercase block">VEHICLE COMPATIBILITY</span>
+                                <span className="text-white text-[10px] font-mono font-bold uppercase mt-0.5 inline-block bg-neutral-900 border border-neutral-800 px-2 py-0.5">NISSAN 350Z (Z33 CHASSIS)</span>
+                              </div>
+                            </div>
+                          )}
+
+                          {tab.id === 'panels' && (
+                            <div className="space-y-4">
+                              <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">CHASSIS INVENTORY</span>
+                              <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider">PARTS INCLUDED IN SPEC</h3>
+                              <div className="grid grid-cols-1 gap-y-2.5 font-mono text-[11px] text-neutral-400">
+                                {[
+                                  'FRONT BUMPER', 'FRONT FENDER (+50MM)', 'FUEL COVER', 
+                                  'LOWER WING TOP LEGS (CARBON)', 'REAR BUMPER', 
+                                  'REAR FENDER (+60MM)', 'SIDE SKIRT'
+                                ].map((part, i) => (
+                                  <div key={i} className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-[#c0f20c] rounded-full" />
+                                    <span>{part}</span>
+                                  </div>
+                                ))}
+                              </div>
+                              <p className="text-neutral-550 text-[9px] italic font-sans pt-2 border-t border-neutral-900">
+                                *Complete Body Kit option includes all of the above panels at a bundled, discounted package price.
+                              </p>
+                            </div>
+                          )}
+
+                          {tab.id === 'features' && (
+                            <div className="space-y-4">
+                              <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">ENGINEERING SPECIFICATIONS</span>
+                              <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider">KEY AERODYNAMIC FEATURES</h3>
+                              <div className="space-y-3 font-mono text-[11px] text-neutral-400">
+                                {[
+                                  { title: 'WIDEBODY STANCE', desc: 'Lower, wider, and meaner posture optimizing general vehicle track widths.' },
+                                  { title: 'FENDER CLEARANCE', desc: 'Extended fender flares permitting wider performance wheel/tire compounds.' },
+                                  { title: 'FLOW CONGRUENCE', desc: 'Designed meticulously to glide seamlessly with natural Nissan 350Z profile lines.' },
+                                  { title: 'DOWNFORCE PROFILE', desc: 'Drag-reduction profiles optimized for track, drift, and high-performance setups.' }
+                                ].map((feat, i) => (
+                                  <div key={i} className="flex items-start gap-3">
+                                    <span className="text-[#c0f20c] font-bold">✔️</span>
+                                    <div>
+                                      <span className="text-white block font-bold uppercase">{feat.title}</span>
+                                      <span className="text-neutral-450 block text-[10px] font-sans mt-0.5 leading-relaxed">{feat.desc}</span>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {tab.id === 'materials' && (
+                            <div className="space-y-4">
+                              <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">COMPOSITE COMPOSITIONS</span>
+                              <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider">MATERIALS AVAILABLE</h3>
+                              <div className="grid grid-cols-1 gap-4">
+                                {[
+                                  { name: 'FIBERGLASS (FRP)', desc: 'Lightweight structural composite base, shipped ready to paint to any color.' },
+                                  { name: 'MATTE / GLOSS CARBON', desc: 'Premium vacuum-infused autoclave carbon fiber. Ready to bolt-on, no paint needed.' },
+                                  { name: 'FORGED CARBON', desc: 'High-rigidity marbled carbon layout giving a premium structured finish.' },
+                                  { name: 'KEVLAR COMPOSITE', desc: 'Ultra-lightweight aramid-weave core featuring maximum impact resistance.' }
+                                ].map((mat, i) => (
+                                  <div key={i} className="p-3 bg-neutral-900/60 border border-neutral-900 rounded-sm space-y-1">
+                                    <span className="text-white text-[10px] font-mono font-bold tracking-widest block">{mat.name}</span>
+                                    <span className="text-neutral-450 text-[10px] font-sans leading-relaxed block">{mat.desc}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {tab.id === 'leadtime' && (
+                            <div className="space-y-4">
+                              <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">PRODUCTION CALENDAR</span>
+                              <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider">LEAD TIME & SHIPMENT</h3>
+                              <p className="text-neutral-300 text-[11px] leading-relaxed font-sans">
+                                Most ETI components are built to order to ensure weave consistency and quality. Estimated production timeline is 3–5 weeks depending on your selected configuration, chassis spec, and weave finish.
+                              </p>
+                              <div className="p-3.5 bg-[#c0f20c]/5 border border-[#c0f20c]/25 rounded-md">
+                                <p className="text-white text-[10.5px] font-sans leading-relaxed">
+                                  🔥 Transform your Nissan 350Z into a true showstopper with the ETi TOP SECRET Wide Body Kit — built for those who demand maximum presence on the street and the track. Order today and take your Nissan 350Z to the next level!
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </div>
 
-              {/* Right area: Tab Content Details */}
-              <div className="lg:col-span-8 bg-neutral-950/50 border border-neutral-900 p-6 md:p-8 min-h-[260px] relative overflow-hidden backdrop-blur-sm">
+              {/* Right area: Tab Content Details (Desktop only) */}
+              <div className="hidden lg:block lg:col-span-8 bg-neutral-950/50 border border-neutral-900 p-6 md:p-8 min-h-[260px] relative overflow-hidden backdrop-blur-sm">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#c0f20c]/60 to-transparent" />
                 
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={activeProductTab}
+                    key={activeProductTab || 'overview'}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.25 }}
                     className="space-y-4 text-left"
                   >
-                    {activeProductTab === 'overview' && (
+                    {(activeProductTab || 'overview') === 'overview' && (
                       <div className="space-y-4">
                         <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">CHASSIS OUTLINE</span>
                         <h3 className="font-display font-bold text-lg text-white uppercase tracking-wider">NISSAN 350Z TOP SECRET WIDEBODY BODY KIT</h3>
@@ -3837,7 +3949,7 @@ export default function App() {
                       </div>
                     )}
 
-                    {activeProductTab === 'panels' && (
+                    {(activeProductTab || 'overview') === 'panels' && (
                       <div className="space-y-4">
                         <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">CHASSIS INVENTORY</span>
                         <h3 className="font-display font-bold text-lg text-white uppercase tracking-wider">PARTS INCLUDED IN SPEC</h3>
@@ -3859,7 +3971,7 @@ export default function App() {
                       </div>
                     )}
 
-                    {activeProductTab === 'features' && (
+                    {(activeProductTab || 'overview') === 'features' && (
                       <div className="space-y-4">
                         <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">ENGINEERING SPECIFICATIONS</span>
                         <h3 className="font-display font-bold text-lg text-white uppercase tracking-wider">KEY AERODYNAMIC FEATURES</h3>
@@ -3882,7 +3994,7 @@ export default function App() {
                       </div>
                     )}
 
-                    {activeProductTab === 'materials' && (
+                    {(activeProductTab || 'overview') === 'materials' && (
                       <div className="space-y-4">
                         <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">COMPOSITE COMPOSITIONS</span>
                         <h3 className="font-display font-bold text-lg text-white uppercase tracking-wider">MATERIALS AVAILABLE</h3>
@@ -3902,7 +4014,7 @@ export default function App() {
                       </div>
                     )}
 
-                    {activeProductTab === 'leadtime' && (
+                    {(activeProductTab || 'overview') === 'leadtime' && (
                       <div className="space-y-4">
                         <span className="font-mono text-[9px] tracking-widest text-[#c0f20c] uppercase font-bold block">PRODUCTION CALENDAR</span>
                         <h3 className="font-display font-bold text-lg text-white uppercase tracking-wider">LEAD TIME & SHIPMENT</h3>
