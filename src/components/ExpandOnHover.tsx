@@ -80,7 +80,13 @@ export function ExpandOnHover({ items, onSelect }: ExpandOnHoverProps) {
                   transition: "all 500ms cubic-bezier(0.25, 0.8, 0.25, 1)",
                 }}
                 onMouseEnter={() => setExpandedIndex(idx)}
-                onClick={() => onSelect(item)}
+                onClick={() => {
+                  if (isExpanded) {
+                    onSelect(item);
+                  } else {
+                    setExpandedIndex(idx);
+                  }
+                }}
               >
                 <img
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
