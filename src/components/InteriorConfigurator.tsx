@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Sliders,
-  Volume2,
-  VolumeX,
   ChevronRight,
 } from 'lucide-react';
 import gsap from 'gsap';
@@ -37,8 +35,8 @@ interface ChassisConfig {
 const CONFIGS_DATA: { [key: string]: ChassisConfig } = {
   supra: {
     chassisName: "TOYOTA SUPRA JZA80",
-    defaultImg: "/content/blogs/Interrior/New Folder With Items/WhatsApp Image 2026-06-26 at 13.32.42 (3).jpeg",
-    relativeImg: "/content/blogs/Interrior/New Folder With Items/WhatsApp Image 2026-06-26 at 13.32.42 (3).jpeg",
+    defaultImg: "/content/blogs/Interior/WhatsApp Image 2026-06-26 at 13.32.42.jpeg",
+    relativeImg: "/content/blogs/Interior/WhatsApp Image 2026-06-26 at 13.32.42.jpeg",
     hotspots: {
       steering: { left: "60.6%", top: "31.1%" },
       dashboard: { left: "36.4%", top: "17.7%" },
@@ -82,8 +80,8 @@ const CONFIGS_DATA: { [key: string]: ChassisConfig } = {
   },
   rx7: {
     chassisName: "MAZDA RX-7 FD3S",
-    defaultImg: "/content/blogs/Interrior/New Folder With Items/WhatsApp Image 2026-06-26 at 13.32.42 (3).jpeg",
-    relativeImg: "/content/blogs/Interrior/New Folder With Items/WhatsApp Image 2026-06-26 at 13.32.42 (3).jpeg",
+    defaultImg: "/content/blogs/Interior/WhatsApp Image 2026-06-26 at 13.32.42.jpeg",
+    relativeImg: "/content/blogs/Interior/WhatsApp Image 2026-06-26 at 13.32.42.jpeg",
     hotspots: {
       steering: { left: "60.6%", top: "31.1%" },
       dashboard: { left: "36.4%", top: "17.7%" },
@@ -141,14 +139,12 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
     lowerGloveBox: null
   });
   const [compareMode, setCompareMode] = useState(false);
-  const [isSoundOn, setIsSoundOn] = useState(false);
   const [isEditorModeActive, setIsEditorModeActive] = useState(false);
 
   const [hotspotsPositions, setHotspotsPositions] = useState<{ [key: string]: { left: string; top: string } }>(
     JSON.parse(JSON.stringify(CONFIGS_DATA.supra.hotspots))
   );
 
-  const audioCtxRef = useRef<AudioContext | null>(null);
   const fallbackImgRef = useRef<HTMLImageElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
 
@@ -171,44 +167,7 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
     }
   }, [activeChassis]);
 
-  const playSynthSound = (type: 'click' | 'select' | 'switch') => {
-    if (!isSoundOn) return;
-    try {
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      }
-      const audioCtx = audioCtxRef.current;
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      if (type === 'click') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1);
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-        osc.start(); osc.stop(audioCtx.currentTime + 0.1);
-      } else if (type === 'select') {
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
-        osc.start(); osc.stop(audioCtx.currentTime + 0.15);
-      } else if (type === 'switch') {
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(450, audioCtx.currentTime + 0.25);
-        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-        osc.start(); osc.stop(audioCtx.currentTime + 0.25);
-      }
-    } catch (err) {
-      console.warn("Audio synth fail", err);
-    }
-  };
+
 
   const handleViewportMouseDown = (e: React.MouseEvent) => {
     if (isEditorModeActive) return;
@@ -271,7 +230,6 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
 
   const handlePartClick = (zoneId: string) => {
     if (isEditorModeActive) return;
-    playSynthSound('click');
     setFocusedZone(zoneId);
     let panOffset = 0;
     if (zoneId === 'steering') panOffset = 180;
@@ -289,12 +247,10 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
   };
 
   const selectOption = (zoneId: string, option: OptionItem) => {
-    playSynthSound('select');
     setSelectedOptions(prev => ({ ...prev, [zoneId]: option }));
   };
 
   const handleCheckoutAndAdd = () => {
-    playSynthSound('select');
     let addedAny = false;
     Object.keys(selectedOptions).forEach(zoneId => {
       const opt = selectedOptions[zoneId];
@@ -335,7 +291,6 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
 
   const switchChassis = (chassisId: 'supra' | 'rx7') => {
     if (chassisId === activeChassis) return;
-    playSynthSound('switch');
     setActiveChassis(chassisId);
   };
 
@@ -368,23 +323,13 @@ export default function InteriorConfigurator({ onAddToCart }: InteriorConfigurat
           <div className="flex flex-wrap gap-3 items-center">
             {/* Coordinate Mode Toggle */}
             <button
-              onClick={() => { setIsEditorModeActive(!isEditorModeActive); playSynthSound('click'); }}
+              onClick={() => setIsEditorModeActive(!isEditorModeActive)}
               className={`p-2.5 border transition-all duration-300 cursor-pointer text-xs flex items-center gap-2 rounded-sm ${
                 isEditorModeActive ? 'border-red-500 text-red-500' : 'border-neutral-800 bg-neutral-900 hover:border-red-500/50 text-neutral-400'
               }`}
             >
               <Sliders className="h-4 w-4" />
               <span className="font-mono text-[9px] uppercase tracking-wider hidden sm:inline">Coord Mode</span>
-            </button>
-            {/* Sound FX Toggle */}
-            <button
-              onClick={() => { setIsSoundOn(!isSoundOn); playSynthSound('select'); }}
-              className={`p-2.5 border transition-all duration-300 cursor-pointer text-xs flex items-center gap-2 rounded-sm ${
-                isSoundOn ? 'border-[#c0f20c] text-[#c0f20c]' : 'border-neutral-800 bg-neutral-900 hover:border-[#c0f20c]/50 text-neutral-400'
-              }`}
-            >
-              {isSoundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              <span className="font-mono text-[9px] uppercase tracking-wider hidden sm:inline">Audio SFX</span>
             </button>
             {/* Chassis Tabs */}
             <div className="flex bg-neutral-900 border border-neutral-800 p-1 rounded-sm">
